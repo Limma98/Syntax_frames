@@ -1,0 +1,252 @@
+/* Cinematic Cam NUI — LIMMA panel theme (grey + neon blue) */
+/* NOTE: no backdrop-filter / color-mix — game CEF renders those as black boxes. */
+:root {
+    --bg:        #0d0f12;
+    --bg-2:      #14181d;
+    --panel:     #1a1f26;
+    --line:      #283038;
+    --gold:      #2fd0ff;   /* neon blue accent */
+    --gold-dim:  #1f7fa6;   /* dim blue */
+    --text:      #d8dee6;
+    --muted:     #79858f;
+    --red:       #ff5566;
+    --green:     #2ee08a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    height: 100%;
+    background: transparent;    /* NUI must stay see-through outside the panel */
+    overflow: hidden;
+    user-select: none;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: var(--text);
+}
+
+.hidden { display: none !important; }
+
+/* ---------- Panel shell ---------- */
+#panel {
+    position: fixed;
+    top: 50%; right: 24px;
+    transform: translateY(-50%);
+    width: 360px;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, var(--bg-2), var(--bg));
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .55), 0 0 24px rgba(47, 208, 255, .07);
+    animation: panelIn .18s ease-out;
+}
+@keyframes panelIn {
+    from { opacity: 0; transform: translateY(-50%) translateX(14px); }
+    to   { opacity: 1; transform: translateY(-50%) translateX(0); }
+}
+
+/* ---------- Titlebar ---------- */
+#titlebar {
+    flex: 0 0 auto;
+    display: flex; align-items: center; gap: 9px;
+    padding: 10px 12px;
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--line);
+    border-radius: 12px 12px 0 0;
+}
+.mark {
+    font-size: 10.5px; font-weight: 800; letter-spacing: .5px;
+    color: #04121a; background: var(--gold);
+    padding: 2px 7px; border-radius: 5px;
+}
+#title {
+    flex: 1;
+    font-size: 12.5px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-shadow: 0 0 8px rgba(47, 208, 255, .35);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+#btn-close {
+    width: 26px; height: 26px;
+    border: 1px solid var(--line); border-radius: 7px;
+    background: transparent; color: var(--muted);
+    font-size: 11px; cursor: pointer;
+    transition: background .12s, color .12s, border-color .12s;
+}
+#btn-close:hover { background: #e11d2e; border-color: #e11d2e; color: #fff; }
+
+/* ---------- Body / sections ---------- */
+#body {
+    flex: 1; min-height: 0;
+    overflow-y: auto;
+    padding: 14px 16px 6px;
+    display: flex; flex-direction: column; gap: 16px;
+}
+#body::-webkit-scrollbar { width: 6px; }
+#body::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+#body::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+.sec-label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--muted);
+    padding-bottom: 6px; margin-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+}
+.sec-label::before {
+    content: '';
+    width: 3px; height: 11px; border-radius: 2px;
+    background: var(--gold);
+    box-shadow: 0 0 7px rgba(47, 208, 255, .6);
+}
+
+/* ---------- Rows ---------- */
+.row {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 7px 0;
+}
+.row--slider { flex-direction: column; align-items: stretch; gap: 7px; }
+.row-head { display: flex; align-items: center; justify-content: space-between; }
+.row-label { font-size: 12.5px; font-weight: 600; letter-spacing: .2px; }
+.row-val {
+    font-size: 11.5px; font-weight: 700; color: var(--gold);
+    background: #10161c; border: 1px solid var(--line);
+    padding: 1px 8px; border-radius: 6px; min-width: 44px; text-align: center;
+}
+
+/* ---------- Toggle switch ---------- */
+.switch { display: inline-flex; cursor: pointer; }
+.switch input { display: none; }
+.switch .track {
+    width: 38px; height: 20px; border-radius: 10px;
+    background: #10151b; border: 1px solid var(--line);
+    display: inline-flex; align-items: center; padding: 2px;
+    transition: border-color .18s, background .18s, box-shadow .18s;
+}
+.switch .knob {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--muted);
+    transition: margin-left .18s, background .18s, box-shadow .18s;
+}
+.switch input:checked + .track {
+    border-color: var(--gold); background: #16222b;
+    box-shadow: 0 0 10px rgba(47, 208, 255, .25);
+}
+.switch input:checked + .track .knob {
+    margin-left: 18px; background: var(--gold);
+    box-shadow: 0 0 8px rgba(47, 208, 255, .7);
+}
+
+/* ---------- Sliders ---------- */
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%; height: 4px; border-radius: 2px;
+    background: var(--line);   /* JS paints the accent fill */
+    outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 8px rgba(47, 208, 255, .6);
+    cursor: pointer;
+    transition: box-shadow .12s;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 12px rgba(47, 208, 255, .9);
+}
+
+/* ---------- Selects ---------- */
+select {
+    flex: 1; max-width: 205px;
+    background: #10161c; color: var(--text);
+    border: 1px solid var(--line); border-radius: 8px;
+    padding: 6px 8px; font-size: 12px; font-family: inherit;
+    outline: none; cursor: pointer;
+    transition: border-color .15s, box-shadow .15s;
+}
+select:hover, select:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 9px rgba(47, 208, 255, .22);
+}
+select option { background: var(--panel); color: var(--text); }
+
+/* ---------- Buttons ---------- */
+.btn {
+    width: 100%;
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    background: linear-gradient(180deg, #191f27, #12171d);
+    border: 1px solid var(--line); border-radius: 9px;
+    padding: 8px 12px; margin-top: 4px;
+    color: var(--text); font-family: inherit;
+    font-size: 12.5px; font-weight: 700; letter-spacing: .2px;
+    cursor: pointer;
+    transition: border-color .16s, background .16s, box-shadow .16s, transform .05s;
+}
+.btn:hover {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, #1d2833, #141b22);
+    box-shadow: 0 0 0 1px rgba(47, 208, 255, .2), 0 0 16px rgba(47, 208, 255, .25);
+}
+.btn:active { transform: translateY(1px); }
+.btn .accent { color: var(--gold); }
+.btn.active {
+    border-color: var(--gold); background: #16222b;
+    box-shadow: 0 0 14px rgba(47, 208, 255, .25);
+}
+.btn--warn:hover {
+    border-color: var(--red);
+    box-shadow: 0 0 0 1px rgba(255, 85, 102, .25), 0 0 14px rgba(255, 85, 102, .3);
+}
+
+/* screenshot / primary action button */
+.btn--accent {
+    color: #04121a; font-weight: 800;
+    background: linear-gradient(180deg, var(--gold), var(--gold-dim));
+    border-color: var(--gold);
+}
+.btn--accent .accent { color: #04121a; }
+.btn--accent:hover {
+    border-color: #fff;
+    background: linear-gradient(180deg, #5fdcff, var(--gold));
+    box-shadow: 0 0 0 1px rgba(47, 208, 255, .35), 0 0 18px rgba(47, 208, 255, .45);
+}
+.btn--accent.is-busy { opacity: .55; pointer-events: none; }
+
+/* ---------- Arrow-key navigation highlight ---------- */
+/* the currently selected row/button when navigating with the keyboard */
+.row.nav-active, .btn.nav-active {
+    position: relative;
+    border-radius: 8px;
+}
+.row.nav-active {
+    background: rgba(47, 208, 255, .07);
+    box-shadow: inset 3px 0 0 var(--gold);
+    padding-left: 8px; margin-left: -8px;
+    padding-right: 8px; margin-right: -8px;
+}
+.btn.nav-active {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 1px rgba(47, 208, 255, .35), 0 0 16px rgba(47, 208, 255, .3);
+}
+
+/* ---------- Keybind footer ---------- */
+#keys {
+    flex: 0 0 auto;
+    display: flex; flex-wrap: wrap; gap: 5px;
+    padding: 10px 14px 12px;
+    border-top: 1px solid var(--line);
+}
+.key {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10px; color: var(--muted); letter-spacing: .2px;
+}
+.key kbd {
+    font-family: inherit; font-size: 9.5px; font-weight: 700;
+    color: var(--gold); background: #10161c;
+    border: 1px solid var(--line); border-radius: 4px;
+    padding: 1px 5px;
+}

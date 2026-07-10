@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Syntax Frames</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="panel" class="hidden">
+        <header id="titlebar">
+            <span class="mark">SYNTAX</span>
+            <h1 id="title">Syntax Frames</h1>
+            <button id="btn-close" title="Close (DEL / Backspace)">✕</button>
+        </header>
+
+        <div id="body">
+            <section>
+                <h2 class="sec-label">Camera</h2>
+
+                <div class="row">
+                    <span class="row-label" id="lbl-cam">Camera active</span>
+                    <label class="switch"><input type="checkbox" id="in-cam"><span class="track"><span class="knob"></span></span></label>
+                </div>
+
+                <div class="row row--slider">
+                    <div class="row-head"><span class="row-label" id="lbl-precision">Camera Precision</span><span class="row-val" id="val-precision">1.0</span></div>
+                    <input type="range" id="in-precision">
+                </div>
+
+                <div class="row row--slider">
+                    <div class="row-head"><span class="row-label" id="lbl-speed">Camera Speed</span><span class="row-val" id="val-speed">1.0</span></div>
+                    <input type="range" id="in-speed">
+                </div>
+
+                <div class="row row--slider">
+                    <div class="row-head"><span class="row-label" id="lbl-fov">Field of View</span><span class="row-val" id="val-fov">50</span></div>
+                    <input type="range" id="in-fov">
+                </div>
+            </section>
+
+            <section>
+                <h2 class="sec-label" id="lbl-filter-sec">Filter</h2>
+
+                <div class="row">
+                    <span class="row-label" id="lbl-filter">Filter</span>
+                    <select id="in-filter"></select>
+                </div>
+
+                <div class="row row--slider">
+                    <div class="row-head"><span class="row-label" id="lbl-intensity">Filter Intensity</span><span class="row-val" id="val-intensity">1.0</span></div>
+                    <input type="range" id="in-intensity">
+                </div>
+
+                <button class="btn btn--warn" id="btn-resetfilter">Reset Filter</button>
+            </section>
+
+            <section>
+                <h2 class="sec-label" id="lbl-capture-sec">Capture</h2>
+                <button class="btn btn--accent" id="btn-screenshot">📷&nbsp;<span id="lbl-screenshot">Take Screenshot</span></button>
+            </section>
+
+            <section id="sec-orbit" class="hidden">
+                <h2 class="sec-label" id="lbl-orbit-sec">OrbitCam</h2>
+
+                <div class="row">
+                    <span class="row-label" id="lbl-orbit">OrbitCam</span>
+                    <label class="switch"><input type="checkbox" id="in-orbit"><span class="track"><span class="knob"></span></span></label>
+                </div>
+
+                <div class="row row--slider">
+                    <div class="row-head"><span class="row-label" id="lbl-orbitspeed">Rotation speed</span><span class="row-val" id="val-orbitspeed">0.1</span></div>
+                    <input type="range" id="in-orbitspeed">
+                </div>
+
+                <div class="row">
+                    <span class="row-label" id="lbl-orbitcontrols">Controls</span>
+                    <label class="switch"><input type="checkbox" id="in-orbitcontrols" checked><span class="track"><span class="knob"></span></span></label>
+                </div>
+
+                <div class="row">
+                    <span class="row-label" id="lbl-orbitbone">Bone</span>
+                    <select id="in-orbitbone"></select>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="sec-label">Extras</h2>
+
+                <div class="row">
+                    <span class="row-label" id="lbl-showmap">Show Minimap</span>
+                    <label class="switch"><input type="checkbox" id="in-showmap"><span class="track"><span class="knob"></span></span></label>
+                </div>
+
+                <div class="row">
+                    <span class="row-label" id="lbl-freefly">Free Fly Mode</span>
+                    <label class="switch"><input type="checkbox" id="in-freefly"><span class="track"><span class="knob"></span></span></label>
+                </div>
+
+                <div class="row">
+                    <span class="row-label" id="lbl-charcontrol">Character Control</span>
+                    <label class="switch"><input type="checkbox" id="in-charcontrol"><span class="track"><span class="knob"></span></span></label>
+                </div>
+
+                <button class="btn" id="btn-attach"><span id="attach-label">Attach camera to:</span><span class="accent" id="attach-target">-</span></button>
+            </section>
+        </div>
+
+        <footer id="keys">
+            <span class="key"><kbd>↑</kbd><kbd>↓</kbd> Navigate</span>
+            <span class="key"><kbd>←</kbd><kbd>→</kbd> Adjust</span>
+            <span class="key"><kbd>ENTER</kbd> Select</span>
+            <span class="key"><kbd>W A S D</kbd> Fly cam</span>
+            <span class="key"><kbd>SCROLL</kbd> FoV</span>
+            <span class="key"><kbd>BACKSPACE</kbd> Back</span>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
