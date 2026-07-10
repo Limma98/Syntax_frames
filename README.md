@@ -1,3 +1,6 @@
+<img width="1917" height="1079" alt="Screenshot 2026-07-10 201004" src="https://github.com/user-attachments/assets/458e17e9-27d0-481d-8f15-b702ee197f8e" />
+<img width="1919" height="1079" alt="Screenshot 2026-07-10 200926" src="https://github.com/user-attachments/assets/cb0b5835-cb06-47a3-b659-711db6e37f03" />
+<img width="1919" height="1079" alt="Screenshot 2026-07-10 200901" src="https://github.com/user-attachments/assets/f06dc671-e5e0-442c-bcde-dd41411a5561" />
 # Syntax Frames
 
 A cinematic "additional" camera that can be moved freely in the world, attached to
